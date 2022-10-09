@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Video</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<!-- 🔇 ⏸️ ▶️ 📺 -->
+	<div class="video_wrapper">
+		<video src="https://static.vecteezy.com/packs/media/video/bg-video-7043b089.mp4" id="video"></video>
+		<div class="vid_controls">
+			<span class="vid_play_pause">▶️</span>
+			<span class="vid_mute">🔊</span>
+			<span class="vid_current_time">00:00</span>
+			<div class="vid_tracks">
+				<div class="vid_track_all"></div>
+				<canvas id="vid_buffered_track" width="100%" height="10"> </canvas>
+				<div class="vid_track_current"></div>
+			</div>
+			<span class="vid_full_time">00:00</span>
+			<span class="vid_fullscreen">📺</span>
+
+		</div>
+	</div>
+
+<script src="scripts.js"></script>
+</body>
+</html>
