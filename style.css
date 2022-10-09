@@ -19,7 +19,7 @@ video{
 video.fullscreen{
 	height: 100%;
 }
-.vid_controls{
+.player_controls{
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -34,20 +34,43 @@ video.fullscreen{
 	font-size: 1.3em;
 	transition: 0.4s;
 }
-.vid_controls.hide{
+.player_controls.hide{
 	bottom: -50px;
 }
-.vid_tracks, .vid_play_pause, .vid_current_time, .vid_full_time, .vid_fullscreen, .vid_mute{
+.player_tracks, .player_play_pause, .player_current_time, .player_volume, .player_full_time, .player_fullscreen, .player_mute{
 	margin: 0 5px;
 	cursor: pointer;
 }
-.vid_tracks{
+.player_volume{
+	margin: 0 10px 0 0;
+	width: 70px;
+	display: flex;
+	align-items: center;
+	position: relative;
+}
+.player_volume_track{
+	width: 60px;
+	height: 10px;
+	border-radius: 4px;
+	background: #999;
+}
+.player_volume_slider{
+	width: 10px;
+	height: 20px;
+	border-radius: 10px;
+	background: #d7d5d5;
+	position: absolute;
+	left: 10%;
+	transform: translateX(-50%);
+	pointer-events: none;
+}
+.player_tracks{
 	width: 100%;
 	height: 10px;
 	position: relative;
 	border-radius: 5px;
 }
-.vid_track_all{
+.player_track_full{
 	background: #999;
 	height: 100%;
 	position: absolute;
@@ -58,7 +81,7 @@ video.fullscreen{
 	border-radius: 5px;
 	z-index: 18;
 }
-.vid_track_current{
+.player_track_current{
 	background: #2c1ed5;
 	height: 100%;
 	position: absolute;
@@ -67,16 +90,5 @@ video.fullscreen{
 	bottom: 0;
 	border-radius: 5px;
 	z-index: 20;
-	pointer-events: none;
-}
-.vid_track_load{
-	background: #717171;
-	height: 100%;
-	position: absolute;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	border-radius: 5px;
-	z-index: 19;
 	pointer-events: none;
 }

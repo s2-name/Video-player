@@ -9,22 +9,27 @@
 <body>
 	<!-- 🔇 ⏸️ ▶️ 📺 -->
 	<div class="video_wrapper">
-		<video src="https://static.vecteezy.com/packs/media/video/bg-video-7043b089.mp4" id="video"></video>
-		<div class="vid_controls">
-			<span class="vid_play_pause">▶️</span>
-			<span class="vid_mute">🔊</span>
-			<span class="vid_current_time">00:00</span>
-			<div class="vid_tracks">
-				<div class="vid_track_all"></div>
-				<canvas id="vid_buffered_track" width="100%" height="10"> </canvas>
-				<div class="vid_track_current"></div>
+		<!-- https://static.vecteezy.com/packs/media/video/bg-video-7043b089.mp4 -->
+		<video src="клоун.mp4" id="video"></video>
+		<div class="player_controls">
+			<span class="player_play_pause">▶️</span>
+			<span class="player_mute">🔊</span>
+			<div class="player_volume">
+				<div class="player_volume_track"></div>
+				<div class="player_volume_slider"></div>
 			</div>
-			<span class="vid_full_time">00:00</span>
-			<span class="vid_fullscreen">📺</span>
+			<span class="player_current_time">00:00</span>
+			<div class="player_tracks">
+				<div class="player_track_full"></div>
+				<div class="player_track_current"></div>
+			</div>
+			<span class="player_full_time">00:00</span>
+			<span class="player_fullscreen">📺</span>
 
 		</div>
 	</div>
 
+<script src="video-player.js"></script>
 <script src="scripts.js"></script>
 </body>
 </html>
