@@ -55,6 +55,15 @@ class Player{
 		this.rewind_value = 5;
 		this.volume_value = 0.1;
 
+		this.icons = {
+			"play": "sources/player_icons/play.svg",
+			"pause": "sources/player_icons/pause.svg",
+			"volume_on": "sources/player_icons/volume_on.svg",
+			"volume_off": "sources/player_icons/volume_off.svg",
+			"fullscreen": "sources/player_icons/fullscreen.svg",
+			"exit_fullscreen": "sources/player_icons/exit_fullscreen.svg",
+		};
+
 	}
 
 
@@ -63,11 +72,11 @@ class Player{
 
 		if(is_paused){
 			this.video.play();
-			this.play_pause.innerHTML = "▶️";
+			this.play_pause.querySelector("img").src = this.icons['play'];
 			this.timeoutID = setTimeout(this.__hide_controls.bind(this), this.hide_controls_timeout);
 		}else{
 			this.video.pause();
-			this.play_pause.innerHTML = "⏸️";
+			this.play_pause.querySelector("img").src = this.icons['pause'];
 		}
 	}
 
@@ -76,10 +85,10 @@ class Player{
 		let is_mute = this.video.muted;
 		if(is_mute){
 			this.video.muted = false;
-			this.mute.innerHTML = "🔊";
+			this.mute.querySelector("img").src = this.icons['volume_on'];
 		}else{
 			this.video.muted = true;
-			this.mute.innerHTML = "🔇";
+			this.mute.querySelector("img").src = this.icons['volume_off'];
 		}
 	}
 
@@ -100,7 +109,9 @@ class Player{
 	        } else if (document.msExitFullscreen) {
 	            document.msExitFullscreen();
 	        }
+
 			this.video.classList.remove("fullscreen");
+			this.fullscreen.querySelector('img').src = this.icons['fullscreen'];
 		}else{
 			if (this.wrapper.requestFullscreen) {
 			    this.wrapper.requestFullscreen();
@@ -110,6 +121,7 @@ class Player{
 			    this.wrapper.msRequestFullscreen();
 			}
 			this.video.classList.add("fullscreen");
+			this.fullscreen.querySelector('img').src = this.icons['exit_fullscreen'];
 		}
 	}
 

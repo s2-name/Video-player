@@ -23,6 +23,7 @@ video.fullscreen{
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	flex-wrap: nowrap;
 	position: absolute;
 	bottom: 0;
 	left: 0;
@@ -36,6 +37,10 @@ video.fullscreen{
 }
 .player_controls.hide{
 	bottom: -50px;
+}
+.player_controls img{
+	width: 25px;
+	display: block;
 }
 .player_tracks, .player_play_pause, .player_current_time, .player_volume, .player_full_time, .player_fullscreen, .player_mute{
 	margin: 0 5px;
