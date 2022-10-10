@@ -5,6 +5,30 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Video</title>
 	<link rel="stylesheet" href="style.css">
+	<style>
+		.video_title{
+			font-size: 2em;
+			margin: 10px 10px 10px 20px;
+		}
+		.video_description{
+			font-size: 1.1em;
+			margin: 0 20px 20px 30px;
+			padding: 10px;
+			border: 2px solid #999;
+			border-radius: 5px;
+		}
+		.video_description p{
+			padding: 10px;
+			border-bottom: 2px solid #555;
+		}
+		.video_description a{
+			color: #4a4a4a;
+			text-decoration: none;
+		}
+		.video_description a:hover{
+			color: #2d2b2b;
+		}
+	</style>
 </head>
 <body>
 	<div class="video_wrapper">
@@ -31,6 +55,12 @@
 			</span>
 
 		</div>
+	</div>
+	<h2 class="video_title">Demo video</h2>
+	<div class="video_description">
+		<p><a href="https://mazwai.com/video/the-valley/455101" target="_blank">Video author</a></p>
+		<p>Icons from <a href="https://www.iconfinder.com/" target="_blank">website</a></p>
+		<p><a href="https://github.com/s2-name/Video-player/" target="_blank">Source code</a></p>
 	</div>
 
 <script src="video-player.js"></script>
