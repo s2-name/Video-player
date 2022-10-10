@@ -1,24 +1,24 @@
 let log = console.log;
 
-let controls = {
-	"wrapper": ".player_controls",    // .vid_controls | #vid_controls
-	"play_pause": ".player_play_pause",
-	"mute": ".player_mute",
-	"volume": ".player_volume",
-	"volume_track": "player_volume_track",
-	"volume_slider": "player_volume_slider",
-	"current_time": ".player_current_time",
-	"full_time": ".player_full_time",
-	"tracks_wrapp": ".player_tracks",
-	"tracks_full": ".player_track_full",
-	"tracks_curr": ".player_track_current",
-	"fullscreen": ".player_fullscreen"
-};
+// let controls = {
+// 	"wrapper": ".player_controls",    // .class | #id | tag
+// 	"play_pause": ".player_play_pause",
+// 	"mute": ".player_mute",
+// 	"volume": ".player_volume",
+// 	"volume_track": "player_volume_track",
+// 	"volume_slider": "player_volume_slider",
+// 	"current_time": ".player_current_time",
+// 	"full_time": ".player_full_time",
+// 	"tracks_wrapp": ".player_tracks",
+// 	"tracks_full": ".player_track_full",
+// 	"tracks_curr": ".player_track_current",
+// 	"fullscreen": ".player_fullscreen"
+// };
 
 
 
 class Player{
-	constructor(video_obj, wrapper, controls=controls){
+	constructor(video_obj, wrapper, controls){
 		this.video = video_obj;
 		this.wrapper = wrapper;
 		this.controls_wrapper = document.querySelector(controls['wrapper']);
@@ -45,7 +45,7 @@ class Player{
 		this.video.addEventListener("click", this.toggle_play_pause.bind(this));
 		this.video.addEventListener("dblclick", this.__rewind.bind(this));
 		this.volume_track.addEventListener("click", this.__set_volume.bind(this));
-		this.volume_track.addEventListener("mousemove", this.__move_volume_slider.bind(this));
+		this.volume.addEventListener("mousemove", this.__move_volume_slider.bind(this));
 		document.addEventListener("keyup", this.keyhendler.bind(this));
 
 		this.video_duration = 0;
