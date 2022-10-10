@@ -38,7 +38,7 @@ class Player{
 		this.play_pause.addEventListener("click", this.toggle_play_pause.bind(this));
 		this.mute.addEventListener("click", this.toggle_mute.bind(this));
 		this.fullscreen.addEventListener("click", this.toggle_fullscreen.bind(this));
-		this.tracks_full.addEventListener("click", this.set_time.bind(this));
+		this.tracks_full.addEventListener("click", this.__set_time.bind(this));
 		this.video.addEventListener("timeupdate", this.update_time.bind(this));
 		this.video.addEventListener("mousemove", this.__show_controls.bind(this));
 		this.video.addEventListener("canplaythrough", this.set_full_time.bind(this));
@@ -46,10 +46,10 @@ class Player{
 		this.video.addEventListener("dblclick", this.__rewind.bind(this));
 		this.volume_track.addEventListener("click", this.__set_volume.bind(this));
 		this.volume.addEventListener("mousemove", this.__move_volume_slider.bind(this));
-		document.addEventListener("keyup", this.keyhendler.bind(this));
+		document.addEventListener("keyup", this.__keyhendler.bind(this));
 
-		this.video_duration = 0;
-		this.timeoutID;
+		this.__video_duration = 0;
+		this.__timeoutID;
 
 		this.hide_controls_timeout = 5000;
 		this.rewind_value = 5;
@@ -73,7 +73,7 @@ class Player{
 		if(is_paused){
 			this.video.play();
 			this.play_pause.querySelector("img").src = this.icons['play'];
-			this.timeoutID = setTimeout(this.__hide_controls.bind(this), this.hide_controls_timeout);
+			this.__timeoutID = setTimeout(this.__hide_controls.bind(this), this.hide_controls_timeout);
 		}else{
 			this.video.pause();
 			this.play_pause.querySelector("img").src = this.icons['pause'];
@@ -126,27 +126,31 @@ class Player{
 	}
 
 
-	set_time(e) {
+	__set_time(e) {
 		let x = e.layerX;
 		let width = e.target.clientWidth;
-		let persent = x/width;
-		this.video.currentTime = this.video.duration*persent;
+		let percent = x/width;
+		this.video.currentTime = this.video.duration*percent;
 	}
 
 
-	update_time(e) {
+	update_time() {
 		let cur_time_pos = this.video.currentTime;
 		this.current_time.innerHTML = this.__format_time(cur_time_pos);
-		let persent = cur_time_pos/this.video_duration*100;
-		this.tracks_curr.style = "width:"+persent+"%;";
+		let percent = cur_time_pos/this.__video_duration*100;
+		this.tracks_curr.style = "width:"+percent+"%;";
 	}
 
 
-	set_full_time(e) {
-		this.video_duration = this.video.duration;
-		this.full_time.innerHTML = this.__format_time(this.video_duration);
+	set_full_time() {
+		this.__video_duration = this.video.duration;
+		this.full_time.innerHTML = this.__format_time(this.__video_duration);
 
-		let vol = this.video.volume;
+		let vol = localStorage.getItem("player_volume");
+		if(!vol){
+			vol = this.video.volume;
+		}
+		this.video.volume = vol;
 		this.volume_slider.style = "left:"+vol*100+"%;";
 	}
 
@@ -174,28 +178,29 @@ class Player{
 	__set_volume(e){
 		let x = e.layerX;
 		let width = e.target.clientWidth;
-		let persent = x/width;
-		this.set_volume(persent);
+		let percent = x/width;
+		this.set_volume(percent);
 	}
 
 
-	set_volume(persent){
-		if(persent>0 && persent<1){
-			this.video.volume = persent;
-			this.volume_slider.style = "left:"+persent*100+"%;";
+	set_volume(percent){
+		if(percent>0 && percent<1){
+			this.video.volume = percent;
+			this.volume_slider.style = "left:"+percent*100+"%;";
+			localStorage.setItem("player_volume", percent);
 		}
 	}
 
 
 	__move_volume_slider(e){
 		if(e.buttons == 1){
-			let persent = e.movementX/e.target.clientWidth;
-			this.set_volume(this.video.volume+persent);
+			let percent = e.movementX/e.target.clientWidth;
+			this.set_volume(this.video.volume+percent);
 		}
 	}
 
 
-	keyhendler(e){
+	__keyhendler(e){
 		let code = e.keyCode;
 		switch (code) {
 			case 32:             // Space
@@ -267,7 +272,7 @@ class Player{
 
 	__show_controls() {
 		this.controls_wrapper.classList.remove("hide");
-		clearTimeout(this.timeoutID);
-		this.timeoutID = setTimeout(this.__hide_controls.bind(this), this.hide_controls_timeout);
+		clearTimeout(this.__timeoutID);
+		this.__timeoutID = setTimeout(this.__hide_controls.bind(this), this.hide_controls_timeout);
 	}
 }

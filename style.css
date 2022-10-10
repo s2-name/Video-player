@@ -85,7 +85,7 @@ video.fullscreen{
 	bottom: 0;
 	width: 100%;
 	border-radius: 5px;
-	z-index: 18;
+	z-index: 19;
 }
 .player_track_current{
 	background: #2c1ed5;
