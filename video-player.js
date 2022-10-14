@@ -46,7 +46,7 @@ class Player{
 		this.video.addEventListener("dblclick", this.__rewind.bind(this));
 		this.volume_track.addEventListener("click", this.__set_volume.bind(this));
 		this.volume.addEventListener("mousemove", this.__move_volume_slider.bind(this));
-		document.addEventListener("keyup", this.__keyhendler.bind(this));
+		document.addEventListener("keydown", this.__keyhendler.bind(this));
 
 		this.__video_duration = 0;
 		this.__timeoutID;
