@@ -201,6 +201,7 @@ class Player{
 
 
 	__keyhendler(e){
+		e.stopPropagation();
 		let code = e.keyCode;
 		switch (code) {
 			case 32:             // Space
