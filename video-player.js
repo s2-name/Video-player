@@ -201,8 +201,8 @@ class Player{
 
 
 	__keyhendler(e){
-		e.stopPropagation();
 		let code = e.keyCode;
+		e.preventDefault();
 		switch (code) {
 			case 32:             // Space
 				this.toggle_play_pause();
